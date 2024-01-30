@@ -1,30 +1,27 @@
 """
-Pizza Time
-Description: Manages pizza orders, checkout, and inventory for a pizzaria.
-Author: Agile
+Title: Pizza Time
+Description: Manages pizza orders, checkout, and inventory for a local pizza store
+Author: Alexander Langston
+Version: 1.0
 """
+import order, checkout, printslow, inventory
+from os import system
 
-import order, checkout, inventory
-
-
-print("Welcome to Pizza Time!\n\nSelect an option Below\n\n\n1. Order\n2. Checkout\n3. Inventory\n4. Exit the program\n\n")
-
+customer_order = []
 while True:
-    try:
-        selection = int(input(">> "))
-        if selection == 1 or selection == 2 or selection == 3 or selection == 4:
-            if selection == 1:
-                order.start()
-            elif selection == 2:
-                checkout.start()
-            elif selection == 3:
-                inventory.start()
-            else:
-                print("Goodbye")
-                break
-
-        else: 
-            print("Please select 1, 2, 3, or 4.")
-    except:
-        print("Please select 1, 2, 3, or 4.")
-
+    system("cls")
+    printslow.slow_type("Welcome to Pizza Time!\n\nSelect an option below.\n\n1. Order\n2. Checkout\n3. Exit\n\n")
+    selection = input(">> ")
+    if selection == "1":
+        customer_order = order.start()
+    elif selection == "2":
+        if len(customer_order) > 0:
+            checkout.start(customer_order)
+        else:
+            printslow.slow_type("The cart is empty. Please run the order program first.\n\n")
+    elif selection == "3":
+        printslow.slow_type("Goodbye")
+        break
+    else:
+        printslow.slow_type("Please select one of the given options")
+        input("Press Enter to continue.\n\n")
