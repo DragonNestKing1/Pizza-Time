@@ -4,7 +4,7 @@ Description: Manages pizza orders, checkout, and inventory for a local pizza sto
 Author: Alexander Langston
 Version: 1.0
 """
-import order, checkout, printslow, inventory
+import order, checkout, printslow
 from os import system
 
 customer_order = []

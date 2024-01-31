@@ -23,6 +23,8 @@ def start(customer_order):
     input("\n\nPress Enter to continue.\n\n\n")
 
 def payment(total):
+
+    change = 0
     
     while True:
             if total < 500:
@@ -31,15 +33,16 @@ def payment(total):
                 if payment_type.lower() == "cash":
                     printslow.slow_type(f"The total is ${total}")
                     try:
-                        cash = bool(input("Provide cash for purchase.\n\n>>"))
+                        cash = float(input("Provide cash for purchase.\n\n>>"))
                     except:
                         printslow.slow_type("Please provide a number")
                         continue
-
+                    
+                    print(cash)
+                    print(total)
                     change = cash - total
 
                     print(f"Return ${change} to the customer.")
-                    input("Press ENTER to continue.")
                     break
 
                 elif payment_type.lower() == "credit":
@@ -48,7 +51,7 @@ def payment(total):
                 else:
                     printslow.slow_type("Please enter cash or credit only.")
             elif total >= 500:
-                 printslow.slow_type("Unfortunately, company policy prevents us from accepting cash for orders larger than $500. Please provide credit information.")
+                 printslow.slow_type("\n\nUnfortunately, company policy prevents us from accepting cash for orders larger than $500. Please provide credit information.\n\n")
                  input(f"The total is ${total}\nPlease swipe the credit card.\n\nPress ENTER after completing the credit card transaction.")
                  break
 
