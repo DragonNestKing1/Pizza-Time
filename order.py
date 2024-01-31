@@ -43,21 +43,12 @@ def start():
                 break
             elif confirm.lower() == "n" or confirm.lower() == "no" or confirm.lower() == "hey guys, i guess thats it":
 
-                printslow.slow_type("Are there any mistakes in your order? (y/n)\n\n")
-
                 for i in order:
                     print(i.quantity, i.size, i.type, i.price)
-                    with open("order.csv", "w", newline='') as file:
-                        writer = csv.writer(file)
-                        writer.writerow([i.quantity, i.size, i.type, i.price])
+                
+                input("Press Enter to continue")
 
-                confirm_order = input("\n\n>> ")
-                if confirm_order.lower() == "y" or confirm_order.lower() == "yes":
-                    break
-                elif confirm_order.lower() == "n" or confirm_order.lower() == "no":
-                    pass
             else:
-                print("A")
                 printslow.slow_type("\n\nYou need to select one of the options\n\n") 
             
             return order

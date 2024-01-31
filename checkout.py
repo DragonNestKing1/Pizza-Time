@@ -20,6 +20,8 @@ def start(customer_order):
 
     payment(total)
 
+    save(customer_order, total)
+
     input("\n\nPress Enter to continue.\n\n\n")
 
 def payment(total):
@@ -38,16 +40,16 @@ def payment(total):
                         printslow.slow_type("Please provide a number")
                         continue
                     
-                    print(cash)
-                    print(total)
-                    change = cash - total
+                    change = round(cash - total, 2)
 
                     print(f"Return ${change} to the customer.")
+                    input("press enter to continue")
                     break
 
                 elif payment_type.lower() == "credit":
                     input(f"The total is ${total}\nPlease swipe the credit card.\n\nPress ENTER after completing the credit card transaction.")
                     break
+
                 else:
                     printslow.slow_type("Please enter cash or credit only.")
             elif total >= 500:
@@ -55,6 +57,12 @@ def payment(total):
                  input(f"The total is ${total}\nPlease swipe the credit card.\n\nPress ENTER after completing the credit card transaction.")
                  break
 
+
+def save(order, total):
+    with open("pizza.dat", "a") as orders:
+        for i in order:
+            orders.write(f"{i.quantity}, {i.size}, {i.type}, ${i.price}, ")
+        orders.write(f"${total}\n")
 
 
 
